@@ -1,0 +1,24 @@
+<app-top></app-top>
+<div style="display: flex">
+  <app-side (navItemClicked)="handleNavItemClick($event)"></app-side>
+  <div style="flex-grow: 1; padding: 20px">
+    <ng-container *ngIf="selectedComponent === 'dashboard'">
+      <app-dashboard></app-dashboard>
+    </ng-container>
+    <ng-container *ngIf="selectedComponent === 'users'">
+      <app-users></app-users>
+    </ng-container>
+    <ng-container *ngIf="selectedComponent === 'products'">
+      <app-products></app-products>
+    </ng-container>
+    <ng-container *ngIf="selectedComponent === 'settings'">
+      <app-settings></app-settings>
+    </ng-container>
+    <ng-container *ngIf="selectedComponent === 'forms'">
+      <app-forms></app-forms>
+    </ng-container>
+   <ng-container *ngIf="selectedComponent === 'fileupload'">
+      <app-fileupload></app-fileupload>
+    </ng-container>
+  </div>
+</div>

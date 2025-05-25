@@ -1,0 +1,63 @@
+<p>forms works!</p>
+<div>
+    
+    <form (ngSubmit)="submitForm()" #patientForm='ngForm'>
+        <div>
+            <label for ="p_name">p_name:</label>
+            <input type="text" id="p_name" name="p_name" [(ngModel)] ="p_name" #p_nameinput="ngModel" required/>
+        </div>
+        <div *ngIf="p_nameinput.invalid && (p_nameinput.dirty || p_nameinput.touched)">Username is required</div>
+        <div>
+             <label for ="guardian">guardian:</label>
+            <input type="email" id="guardian" name="guardian" [(ngModel)] ="guardian" #guardianinput="ngModel" required/>
+        </div>
+        <div *ngIf="guardianinput.invalid && (guardianinput.dirty || guardianinput.touched)">
+            <div *ngIf="guardianinput.errors?.['required']">guardian is mandatory</div>
+        </div>
+        <div>
+             <label for ="age">age:</label>
+            <input type="number" id="age" name="age" [(ngModel)] ="age" #ageinput="ngModel" required/>
+        </div>
+        <div *ngIf="ageinput.invalid && (ageinput.dirty || ageinput.touched)">
+            <div *ngIf="ageinput.errors?.['required']">age is mandatory</div>
+        </div>
+        <div>
+             <label for ="contact">contact:</label>
+            <input type="text" id="contact" name="contact" [(ngModel)] ="contact" #contactinput="ngModel" required/>
+        </div>
+        <div *ngIf="contactinput.invalid && (contactinput.dirty || contactinput.touched)">
+            <div *ngIf="contactinput.errors?.['required']">Contact is mandatory</div>
+        </div>
+        <div>
+             <label for ="diagnosis">diagnosis:</label>
+            <input type="text" id="diagnosis" name="diagnosis" [(ngModel)] ="diagnosis" #diagnosisinput="ngModel" required/>
+        </div>
+        <div *ngIf="diagnosisinput.invalid && (diagnosisinput.dirty || diagnosisinput.touched)">
+            <div *ngIf="diagnosisinput.errors?.['required']">diagnosis is mandatory</div>
+        </div>
+        <button type="submit" [disabled]="patientForm.invalid"> Submit </button>
+    </form>
+</div>
+
+<hr/>
+
+<div>
+    <h2> Get the Patient </h2>
+    <div> 
+        <label for="p_id">Patient Id:</label>
+        <input type="text" id="p_id" name="p_id" [(ngModel)]="p_id" #p_idinput="ngModel"/>
+        <button (click)="fetchPatientById()">Get Patient </button>
+    </div>
+</div>
+
+<br/>
+
+<div *ngIf="fetchPatient" >
+    <h3>Patient Details:</h3>
+    <p><><strong>Id</strong>{{fetchPatient.p_id}}</p>
+    <p><strong>Name</strong>{{fetchPatient.p_name}}</p>
+    <p><strong>Contact</strong>{{fetchPatient.contact}}</p>
+    <p><strong>Guardian</strong>{{fetchPatient.guardian}}</p>
+    <p><strong>Age</strong>{{fetchPatient.age}}</p>
+    <p><strong>diagnosis</strong>{{fetchPatient.diagnosis}}</p>
+</div>
